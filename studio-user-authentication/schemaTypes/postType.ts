@@ -1,35 +1,40 @@
 import {defineField, defineType} from 'sanity'
 
 export const postType = defineType({
-  name: 'post',
-  title: 'Post',
-  type: 'document',
-  fields: [
+    name: 'signup',
+    title: 'Sign Up',
+    type: 'document',
+    fields: [
+        defineField({
+            name: 'fullname',
+            title: 'Full Name',
+            type: 'string',
+            validation: Rule => Rule.required().min(3).max(20),
+          }),
     defineField({
-      name: 'title',
-      type: 'string',
-      validation: (rule) => rule.required(),
-    }),
+        name: 'username',
+        title: 'Username',
+        type: 'string',
+        validation: Rule => Rule.required().min(3).max(20),
+      }),
     defineField({
-      name: 'slug',
-      type: 'slug',
-      options: {source: 'title'},
-      validation: (rule) => rule.required(),
-    }),
+        name: 'email',
+        title: 'Email',
+        type: 'string',
+        validation: Rule => Rule.required().email(),
+      }),
     defineField({
-      name: 'publishedAt',
-      type: 'datetime',
-      initialValue: () => new Date().toISOString(),
-      validation: (rule) => rule.required(),
-    }),
+        name: 'password',
+        title: 'Password',
+        type: 'string',
+        validation: Rule => Rule.required().min(6),
+}),
     defineField({
-      name: 'image',
-      type: 'image',
+        name: 'confirmPassword',
+        title: 'Confirm Password',
+        type: 'string',
+        validation: Rule => Rule.required().min(6),
     }),
-    defineField({
-      name: 'body',
-      type: 'array',
-      of: [{type: 'block'}],
-    }),
+    
   ],
 })
