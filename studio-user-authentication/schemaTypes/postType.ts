@@ -34,6 +34,14 @@ export const postType = defineType({
         title: 'Confirm Password',
         type: 'string',
         validation: Rule => Rule.required().min(6),
+        
+    }),
+    defineField({
+        name: 'name',
+        title: 'Location Name',
+        type: 'string',
+        validation: Rule => Rule.required().min(1).max(100),
+        
     }),
     
   ],
